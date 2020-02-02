@@ -22,7 +22,10 @@
         </v-toolbar-items>
       </v-toolbar>
     </div>
-    <nuxt />
+    <v-row>
+      <v-col cols="12" md="4">로그인창</v-col>
+      <v-col cols="12" md="8"><nuxt /></v-col>
+    </v-row>
   </v-app>
 </template>
 
