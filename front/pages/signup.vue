@@ -4,18 +4,8 @@
       <v-card>
         <v-container>
           <v-subheader>회원가입</v-subheader>
-          <v-form
-            ref="form"
-            v-model="valid"
-            @submit.prevent="onSubmitForm"
-          >
-            <v-text-field
-              v-model="email"
-              label="이메일"
-              type="email"
-              :rules="emailRules"
-              required
-            />
+          <v-form ref="form" v-model="valid" @submit.prevent="onSubmitForm">
+            <v-text-field v-model="email" label="이메일" type="email" :rules="emailRules" required />
             <v-text-field
               v-model="password"
               label="비밀번호"
@@ -37,18 +27,8 @@
               :rules="nicknameRules"
               required
             />
-            <v-checkbox
-              v-model="terms"
-              label="동의?"
-              :rules="termsRules"
-              required
-            />
-            <v-btn
-              color="green"
-              type="submit"
-            >
-              가입하기
-            </v-btn>
+            <v-checkbox v-model="terms" label="동의?" :rules="termsRules" required />
+            <v-btn color="green" type="submit">가입하기</v-btn>
           </v-form>
         </v-container>
       </v-card>
@@ -83,7 +63,19 @@ export default {
   methods: {
     onSubmitForm() {
       if (this.$refs.form.validate()) {
-        alert("회원가입 시도!");
+        this.$store
+          .dispatch("users/signUp", {
+            email: this.email,
+            nickname: this.nickname
+          })
+          .then(() => {
+            this.$router.push({
+              path: "/"
+            });
+          })
+          .catch(() => {
+            alert("회원가입 실패");
+          });
       } else {
         alert("폼이 유효하지 않습니다.");
       }
