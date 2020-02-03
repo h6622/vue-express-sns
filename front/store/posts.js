@@ -1,9 +1,16 @@
 export const state = () => ({
-  hello: "posts"
+  mainPosts: []
 });
 
 export const mutations = {
-  bye(state) {
-    state.hello = "goodbye posts";
+  addMainPost(state, payload) {
+    state.mainPosts.unshift(payload);
+  }
+};
+
+export const actions = {
+  add({ commit }, payload) {
+    // 서버에 게시글 등록 요청 보냄
+    commit("addMainPost");
   }
 };
