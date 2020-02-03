@@ -4,8 +4,18 @@
       <v-card>
         <v-container>
           <v-subheader>회원가입</v-subheader>
-          <v-form ref="form" v-model="valid" @submit.prevent="onSubmitForm">
-            <v-text-field v-model="email" label="이메일" type="email" :rules="emailRules" required />
+          <v-form
+            ref="form"
+            v-model="valid"
+            @submit.prevent="onSubmitForm"
+          >
+            <v-text-field
+              v-model="email"
+              label="이메일"
+              type="email"
+              :rules="emailRules"
+              required
+            />
             <v-text-field
               v-model="password"
               label="비밀번호"
@@ -27,8 +37,18 @@
               :rules="nicknameRules"
               required
             />
-            <v-checkbox v-model="terms" label="동의?" :rules="termsRules" required />
-            <v-btn color="green" type="submit">가입하기</v-btn>
+            <v-checkbox
+              v-model="terms"
+              label="동의?"
+              :rules="termsRules"
+              required
+            />
+            <v-btn
+              color="green"
+              type="submit"
+            >
+              가입하기
+            </v-btn>
           </v-form>
         </v-container>
       </v-card>
@@ -38,11 +58,6 @@
 
 <script>
 export default {
-  head() {
-    return {
-      title: "회원가입"
-    };
-  },
   data() {
     return {
       name: "Nuxt.js",
@@ -74,6 +89,11 @@ export default {
       }
       console.log(this.valid);
     }
+  },
+  head() {
+    return {
+      title: "회원가입"
+    };
   }
 };
 </script>
