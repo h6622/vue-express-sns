@@ -27,6 +27,9 @@ export default {
       type: Function,
       required: true
     }
+  },
+  data() {
+    return {};
   }
 };
 </script>
