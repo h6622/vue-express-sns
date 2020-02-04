@@ -4,18 +4,8 @@
       <v-card>
         <v-container>
           <v-subheader>회원가입</v-subheader>
-          <v-form
-            ref="form"
-            v-model="valid"
-            @submit.prevent="onSubmitForm"
-          >
-            <v-text-field
-              v-model="email"
-              label="이메일"
-              type="email"
-              :rules="emailRules"
-              required
-            />
+          <v-form ref="form" v-model="valid" @submit.prevent="onSubmitForm">
+            <v-text-field v-model="email" label="이메일" type="email" :rules="emailRules" required />
             <v-text-field
               v-model="password"
               label="비밀번호"
@@ -37,18 +27,8 @@
               :rules="nicknameRules"
               required
             />
-            <v-checkbox
-              v-model="terms"
-              label="동의?"
-              :rules="termsRules"
-              required
-            />
-            <v-btn
-              color="green"
-              type="submit"
-            >
-              가입하기
-            </v-btn>
+            <v-checkbox v-model="terms" label="동의?" :rules="termsRules" required />
+            <v-btn color="green" type="submit">가입하기</v-btn>
           </v-form>
         </v-container>
       </v-card>
@@ -80,6 +60,20 @@ export default {
       termsRules: [v => !!v || "약관에 동의 하셔야 합니다."]
     };
   },
+  computed: {
+    me() {
+      return this.$store.state.users.me;
+    }
+  },
+  watch: {
+    me(value) {
+      if (value) {
+        this.$router.push({
+          path: "/"
+        });
+      }
+    }
+  },
   methods: {
     onSubmitForm() {
       if (this.$refs.form.validate()) {
@@ -106,7 +100,8 @@ export default {
     return {
       title: "회원가입"
     };
-  }
+  },
+  middleware: "anonymous"
 };
 </script>
 
